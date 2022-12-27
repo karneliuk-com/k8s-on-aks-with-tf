@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: test-web
+  name: svc-4-test-web
+  namespace: test-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: web-http
+  selector:
+    app: test-web
+  type: ClusterIP

@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-web
+  name: test-web
+  namespace: test-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      containers:
+      - image: nginx:1.22
+        name: nginx
+        resources:
+          requests:
+            cpu: 0.125
+            memory: 128Mi
+          limits:
+            cpu: 0.25
+            memory: 256Mi
+        ports:
+          - name: web-http
+            containerPort: 80
+            protocol: TCP

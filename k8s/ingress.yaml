@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-app-ingress
+  namespace: test-app
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: aks.karneliuk.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-4-test-web
+                port:
+                  number: 80

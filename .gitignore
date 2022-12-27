@@ -1,0 +1,6 @@
+.env
+*.tfvars
+*.key
+.terraform*
+*.tfstate.*
+azurek8s.yaml
